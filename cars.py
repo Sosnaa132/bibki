@@ -7,7 +7,7 @@ color_car = []
 price_car = []
 fari_car = []
 door_car = []
-print('joker')
+engine_car = []
 j = car.readline()
 file = j.split("&")
 if j != "":
@@ -20,6 +20,7 @@ if j != "":
         price_car= [file[4]]
         fari_car= [file[5]]
         door_car= [file[6]]
+        engine_car = [file[7]]
     else:
         marc_car = file[0].split(' ; ')
         model_car = file[1].split(' ; ')
@@ -28,6 +29,7 @@ if j != "":
         price_car = file[4].split(' ; ')
         fari_car = file[5].split(' ; ')
         door_car = file[6].split(' ; ')
+        engine_car = file[7].split(' ; ')
 
 while True:
     try:       
@@ -49,8 +51,9 @@ while True:
                 pr ="Цена"
                 far ="Фары"
                 dor ="двери"
+                eng ="двигатель"
                 
-                print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<20}{col:<20}{pr:<20}{far:<20}{dor:<20}")
+                print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<20}{col:<20}{pr:<20}{far:<20}{dor:<20}{eng:<20}")
                 for x in range(len(marc_car)):
                     nom = f"{x+1})"
                     marca = marc_car[x]
@@ -60,8 +63,9 @@ while True:
                     pr = price_car[x]
                     far = fari_car[x]
                     dor = door_car[x]
+                    eng = engine_car[x]
 
-                    print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<20}{col:<20}{pr:<20}{far:<20}{dor:<20}")
+                    print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<20}{col:<20}{pr:<20}{far:<20}{dor:<20}{eng:<20}")
 
             if go == 2:
                 carina = open('abcd.txt','w')
@@ -140,6 +144,24 @@ while True:
                         print("Выбрать можно только из двух состояний!")
 
 
+
+                while True:
+                    try:
+                        print("1) Заведён")
+                        print("2) Не заведён")
+                        qq=input("Выберите состояние двигателя: ")
+                        if int(qq) == 1:
+                            eng = "Заведён"
+                        elif int(qq) == 2:
+                            eng = "Не заведён"
+                        else:
+                            print("Выбрать можно только из двух состояний!")
+                            continue
+                        break
+                    except ValueError:
+                        print("Выбрать можно только из двух состояний!")
+
+
                 marc_car.append(mar)
                 model_car.append(mod)
                 year_of_release.append(year)
@@ -147,6 +169,7 @@ while True:
                 price_car.append(price)
                 fari_car.append(far)
                 door_car.append(dor)
+                engine_car.append(eng)
 
                 marc_car_save = ' ; '.join(marc_car)+"&" 
                 model_car_save = ' ; '.join(model_car)+"&"
@@ -155,6 +178,7 @@ while True:
                 price_car_save = ' ; '.join(price_car)+"&"
                 fari_car_save = ' ; '.join(fari_car)+"&"
                 door_car_save = ' ; '.join(door_car) +"&"
+                engine_car_save = ' ; '.join(engine_car) +"&"
 
                 carina.writelines(marc_car_save)
                 carina.writelines(model_car_save)
@@ -163,6 +187,7 @@ while True:
                 carina.writelines(price_car_save)
                 carina.writelines(fari_car_save)
                 carina.writelines(door_car_save)
+                carina.writelines(engine_car_save)
 
                 carina.close()
 
@@ -183,9 +208,10 @@ while True:
                     pr ="Цена"
                     far ="Фары"
                     dor ="двери"
-                    print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<20}{col:<20}{pr:<20}{far:<20}{dor:<20}")
+                    eng ="двигатель"
+                    print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<20}{col:<20}{pr:<20}{far:<20}{dor:<20}{eng:<20}")
 
-                    print(f"{sol+1:<7}{marc_car[sol]:<20}{model_car[sol]:<20}{year_of_release[sol]:<20}{color_car[sol]:<20}{price_car[sol]:<20}{fari_car[sol]:<20}{door_car[sol]:<20}")
+                    print(f"{sol+1:<7}{marc_car[sol]:<20}{model_car[sol]:<20}{year_of_release[sol]:<20}{color_car[sol]:<20}{price_car[sol]:<20}{fari_car[sol]:<20}{door_car[sol]:<20}{engine_car[sol]:<20}")
                     print('Вы действительно хотите удалить эту строчку')
 
                     sogl = str(input('Да/Нет: '))
@@ -198,6 +224,7 @@ while True:
                         price_car.pop(sol)
                         fari_car.pop(sol)
                         door_car.pop(sol)
+                        engine_car.pop(sol)
 
                         marc_car_save = ' ; '.join(marc_car)+"&"
                         model_car_save = ' ; '.join(model_car)+"&"
@@ -206,6 +233,7 @@ while True:
                         price_car_save = ' ; '.join(price_car)+"&"
                         fari_car_save = ' ; '.join(fari_car) +"&"
                         door_car_save = ' ; '.join(door_car) +"&"
+                        engine_car_save = ' ; '.join(engine_car) +"&"
 
                         carina.writelines(marc_car_save)
                         carina.writelines(model_car_save)
@@ -214,6 +242,8 @@ while True:
                         carina.writelines(price_car_save)
                         carina.writelines(fari_car_save)
                         carina.writelines(door_car_save)
+                        carina.writelines(engine_car_save)
+                        
                         print('Строчка удалена')
                     else:
                         print('Строчка не удалена')
@@ -233,6 +263,7 @@ while True:
                     print('2) Состояние дверей')
                     print('3) Цвет')
                     print('4) Цена')
+                    print('5) Состояние двигателя')
 
                     a = int(input('Выберете что заменить: '))
                     if a == 1:
@@ -266,6 +297,26 @@ while True:
                                 elif int(qq) == 2:
                                     dor = "Закрыты"
                                     door_car[sol] = dor
+                                else:
+                                    continue
+                                break
+                            except ValueError:
+                                print("Выбрать можно только из двух состояний!")
+
+
+
+                    if a ==5:
+                        while True:
+                            try: 
+                                print("1) Заведён")
+                                print("2) Не заведён")
+                                qq = input("Выберите состояние двигателя: ")
+                                if int(qq) == 1:
+                                    eng = "Заведён"
+                                    engine_car[sol] = eng
+                                elif int(qq) == 2:
+                                    eng = "Не заведён"
+                                    engine_car[sol] = eng
                                 else:
                                     continue
                                 break
@@ -340,6 +391,7 @@ while True:
                 print('5)поиск Цена')
                 print('6)поиск Фары')
                 print('7)поиск Двери')
+                print('8)поиск двигатель')
                 vib = int(input())
                 nom = "№"
                 marca = "Марка"
@@ -349,12 +401,13 @@ while True:
                 pr = "Цена"
                 far = "Фары"
                 dor = "двери"
+                eng = 'двигатель'
                 if vib == 1:
                     print('Поиск')
                     poisk = str(input())
                     DP = len(poisk)
                     i = 0
-                    print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<20}{col:<20}{pr:<20}{far:<20}{dor:<20}")
+                    print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<20}{col:<20}{pr:<20}{far:<20}{dor:<20}{eng:<20}")
                     for a in marc_car:
                         i += 1
                         a = a.replace('ё', 'е', )
@@ -362,13 +415,13 @@ while True:
                         poisk = poisk.replace('ё', 'е', )
                         poisk = poisk.lower()
                         if poisk == a[0:DP]:
-                            print(f"{i:<7}{marc_car[i - 1]:<20}{model_car[i - 1]:<20}{year_of_release[i - 1]:<20}{color_car[i - 1]:<20}{price_car[i - 1]:<20}{fari_car[i - 1]:<20}{door_car[i - 1]:<20}")
+                            print(f"{i:<7}{marc_car[i - 1]:<20}{model_car[i - 1]:<20}{year_of_release[i - 1]:<20}{color_car[i - 1]:<20}{price_car[i - 1]:<20}{fari_car[i - 1]:<20}{door_car[i - 1]:<20}{engine_car[i - 1]:<20}")
                 if vib == 2:
                     print('Поиск')
                     poisk = str(input())
                     DP = len(poisk)
                     i = 0
-                    print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<10}{col:<15}{pr:<20}{far:<20}{dor:<20}")
+                    print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<20}{col:<20}{pr:<20}{far:<20}{dor:<20}{eng:<20}")
                     for a in model_car:
                         i += 1
                         a = a.replace('ё', 'е', )
@@ -376,13 +429,13 @@ while True:
                         poisk = poisk.replace('ё', 'е', )
                         poisk = poisk.lower()
                         if poisk == a[0:DP]:
-                            print(f"{i:<7}{marc_car[i - 1]:<20}{model_car[i - 1]:<20}{year_of_release[i - 1]:<10}{color_car[i - 1]:<15}{price_car[i - 1]:<20}{fari_car[i - 1]:<20}{door_car[i - 1]:<20}")
+                            print(f"{i:<7}{marc_car[i - 1]:<20}{model_car[i - 1]:<20}{year_of_release[i - 1]:<10}{color_car[i - 1]:<15}{price_car[i - 1]:<20}{fari_car[i - 1]:<20}{door_car[i - 1]:<20}{engine_car[i - 1]:<20}")
                 if vib == 3:
                     print('Поиск')
                     poisk = str(input())
                     DP = len(poisk)
                     i = 0
-                    print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<20}{col:<20}{pr:<20}{far:<20}{dor:<20}")
+                    print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<20}{col:<20}{pr:<20}{far:<20}{dor:<20}{eng:<20}")
                     for a in year_of_release:
                         i += 1
                         a = a.replace('ё', 'е', )
@@ -390,13 +443,13 @@ while True:
                         poisk = poisk.replace('ё', 'е', )
                         poisk = poisk.lower()
                         if poisk == a[0:DP]:
-                            print(f"{i:<7}{marc_car[i - 1]:<20}{model_car[i - 1]:<20}{year_of_release[i - 1]:<20}{color_car[i - 1]:<20}{price_car[i - 1]:<20}{fari_car[i - 1]:<20}{door_car[i - 1]:<20}")
+                            print(f"{i:<7}{marc_car[i - 1]:<20}{model_car[i - 1]:<20}{year_of_release[i - 1]:<20}{color_car[i - 1]:<20}{price_car[i - 1]:<20}{fari_car[i - 1]:<20}{door_car[i - 1]:<20}{engine_car[i - 1]:<20}")
                 if vib == 4:
                     print('Поиск')
                     poisk = str(input())
                     DP = len(poisk)
                     i = 0
-                    print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<20}{col:<20}{pr:<20}{far:<20}{dor:<20}")
+                    print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<20}{col:<20}{pr:<20}{far:<20}{dor:<20}{eng:<20}")
                     for a in color_car:
                         i += 1
                         a = a.replace('ё', 'е', )
@@ -404,14 +457,14 @@ while True:
                         poisk = poisk.replace('ё', 'е', )
                         poisk = poisk.lower()
                         if poisk == a[0:DP]:
-                            print(f"{i:<7}{marc_car[i - 1]:<20}{model_car[i - 1]:<20}{year_of_release[i - 1]:<20}{color_car[i - 1]:<20}{price_car[i - 1]:<20}{fari_car[i - 1]:<20}{door_car[i - 1]:<20}")
+                            print(f"{i:<7}{marc_car[i - 1]:<20}{model_car[i - 1]:<20}{year_of_release[i - 1]:<20}{color_car[i - 1]:<20}{price_car[i - 1]:<20}{fari_car[i - 1]:<20}{door_car[i - 1]:<20}{engine_car[i - 1]:<20}")
 
                 if vib == 5:
                     print('Поиск')
                     poisk = str(input())
                     DP = len(poisk)
                     i = 0
-                    print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<20}{col:<20}{pr:<20}{far:<20}{dor:<20}")
+                    print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<20}{col:<20}{pr:<20}{far:<20}{dor:<20}{eng:<20}")
                     for a in price_car:
                         i += 1
                         a = a.replace('ё', 'е', )
@@ -419,13 +472,13 @@ while True:
                         poisk = poisk.replace('ё', 'е', )
                         poisk = poisk.lower()
                         if poisk == a[0:DP]:
-                            print(f"{i:<7}{marc_car[i - 1]:<20}{model_car[i - 1]:<20}{year_of_release[i - 1]:<20}{color_car[i - 1]:<20}{price_car[i - 1]:<20}{fari_car[i - 1]:<20}{door_car[i - 1]:<20}")
+                            print(f"{i:<7}{marc_car[i - 1]:<20}{model_car[i - 1]:<20}{year_of_release[i - 1]:<20}{color_car[i - 1]:<20}{price_car[i - 1]:<20}{fari_car[i - 1]:<20}{door_car[i - 1]:<20}{engine_car[i - 1]:<20}")
                 if vib == 6:
                     print('Поиск')
                     poisk = input()
                     DP = len(poisk)
                     i = 0
-                    print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<20}{col:<20}{pr:<20}{far:<20}{dor:<20}")
+                    print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<20}{col:<20}{pr:<20}{far:<20}{dor:<20}{eng:<20}")
                     for a in fari_car:
                         i += 1
                         a = a.replace('ё', 'е', )
@@ -433,13 +486,13 @@ while True:
                         poisk = poisk.replace('ё', 'е', )
                         poisk = poisk.lower()
                         if poisk == a[0:DP]:
-                            print(f"{i:<7}{marc_car[i - 1]:<20}{model_car[i - 1]:<20}{year_of_release[i - 1]:<20}{color_car[i - 1]:<20}{price_car[i - 1]:<20}{fari_car[i - 1]:<20}{door_car[i - 1]:<20}")
+                            print(f"{i:<7}{marc_car[i - 1]:<20}{model_car[i - 1]:<20}{year_of_release[i - 1]:<20}{color_car[i - 1]:<20}{price_car[i - 1]:<20}{fari_car[i - 1]:<20}{door_car[i - 1]:<20}{engine_car[i - 1]:<20}")
                 if vib == 7:
                     print('Поиск')
                     poisk = str(input())
                     DP = len(poisk)
                     i = 0
-                    print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<20}{col:<20}{pr:<20}{far:<20}{dor:<20}")
+                    print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<20}{col:<20}{pr:<20}{far:<20}{dor:<20}{eng:<20}")
                     for a in door_car:
                         i += 1
                         a = a.replace('ё', 'е', )
@@ -447,7 +500,21 @@ while True:
                         poisk = poisk.replace('ё', 'е', )
                         poisk = poisk.lower()
                         if poisk == a[0:DP]:
-                            print(f"{i:<7}{marc_car[i - 1]:<20}{model_car[i - 1]:<20}{year_of_release[i - 1]:<20}{color_car[i - 1]:<20}{price_car[i - 1]:<20}{fari_car[i - 1]:<20}{door_car[i - 1]:<20}")
+                            print(f"{i:<7}{marc_car[i - 1]:<20}{model_car[i - 1]:<20}{year_of_release[i - 1]:<20}{color_car[i - 1]:<20}{price_car[i - 1]:<20}{fari_car[i - 1]:<20}{door_car[i - 1]:<20}{engine_car[i - 1]:<20}")
+                if vib == 8:
+                    print('Поиск')
+                    poisk = str(input())
+                    DP = len(poisk)
+                    i = 0
+                    print(f"{nom:<7}{marca:<20}{moda:<20}{yer:<20}{col:<20}{pr:<20}{far:<20}{dor:<20}{eng:<20}")
+                    for a in engine_car:
+                        i += 1
+                        a = a.replace('ё', 'е', )
+                        a = a.lower()
+                        poisk = poisk.replace('ё', 'е', )
+                        poisk = poisk.lower()
+                        if poisk == a[0:DP]:
+                            print(f"{i:<7}{marc_car[i - 1]:<20}{model_car[i - 1]:<20}{year_of_release[i - 1]:<20}{color_car[i - 1]:<20}{price_car[i - 1]:<20}{fari_car[i - 1]:<20}{door_car[i - 1]:<20}{engine_car[i - 1]:<20}")
                 else:
                     print('Выберите другую функцию')
                     continue
