@@ -7,7 +7,7 @@ color_car = []
 price_car = []
 fari_car = []
 door_car = []
-
+print('joker')
 j = car.readline()
 file = j.split("&")
 if j != "":
